@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Mar-2022 às 21:50
+-- Tempo de geração: 12-Mar-2022 às 02:18
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -48,6 +48,24 @@ CREATE TABLE `areas` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `areas`
+--
+
+INSERT INTO `areas` (`id`, `allowed`, `title`, `cover`, `days`, `start_time`, `end_time`) VALUES
+(1, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
+(2, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
+(3, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00'),
+(4, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
+(5, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
+(6, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00'),
+(7, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
+(8, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
+(9, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00'),
+(10, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
+(11, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
+(12, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00');
 
 -- --------------------------------------------------------
 
@@ -178,6 +196,16 @@ CREATE TABLE `units` (
   `id_owner` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `units`
+--
+
+INSERT INTO `units` (`id`, `name`, `id_owner`) VALUES
+(1, 'APT 100', 1),
+(2, 'APT 101', 1),
+(3, 'APT 200', 0),
+(4, 'APT 201', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -206,6 +234,14 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `cpf`, `password`) VALUES
+(1, 'Carlos Alberto', 'carlos@gmail.com', '12345678911', '$2y$10$fXxqHB2eDbTMqWakwk6KnOpHz0gip9ke0Y/4OWAfB4fAN8rv2xhk6'),
+(2, 'Cicrano', 'cicrano@gmail.com', '25648971236', '$2y$10$zwtGWrIOdfUfbvLFlna1sOCyvxnB1EE09e392C/KWAuVN9fvQ6Umi');
+
 -- --------------------------------------------------------
 
 --
@@ -230,6 +266,14 @@ CREATE TABLE `walls` (
   `body` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `datecreated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `walls`
+--
+
+INSERT INTO `walls` (`id`, `title`, `body`, `datecreated`) VALUES
+(1, 'Título de Aviso de Teste', 'Lorem ipsum bkablablabvblalvblassd', '2020-12-20 15:00:00'),
+(2, 'Alerta geral para TODOS', 'Bla bla bla cuidado bla bla bla', '2020-12-20 18:00:00');
 
 -- --------------------------------------------------------
 
@@ -364,7 +408,7 @@ ALTER TABLE `areadisableddays`
 -- AUTO_INCREMENT de tabela `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `billets`
@@ -418,7 +462,7 @@ ALTER TABLE `unitpets`
 -- AUTO_INCREMENT de tabela `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `unitvehicles`
@@ -430,7 +474,7 @@ ALTER TABLE `unitvehicles`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `walllikes`
@@ -442,7 +486,7 @@ ALTER TABLE `walllikes`
 -- AUTO_INCREMENT de tabela `walls`
 --
 ALTER TABLE `walls`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `warnings`
