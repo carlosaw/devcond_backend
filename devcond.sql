@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Mar-2022 às 02:18
+-- Tempo de geração: 13-Mar-2022 às 14:17
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -80,6 +80,13 @@ CREATE TABLE `billets` (
   `fileurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `billets`
+--
+
+INSERT INTO `billets` (`id`, `id_unit`, `title`, `fileurl`) VALUES
+(1, 1, 'Dez/20', '1_dez20.pdf');
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +98,14 @@ CREATE TABLE `docs` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fileurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `docs`
+--
+
+INSERT INTO `docs` (`id`, `title`, `fileurl`) VALUES
+(1, 'Regras do condomínio', 'manual.pdf'),
+(2, 'Financeiro de Dezembro de 2020', 'fin_dez20.pdf');
 
 -- --------------------------------------------------------
 
@@ -254,6 +269,13 @@ CREATE TABLE `walllikes` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `walllikes`
+--
+
+INSERT INTO `walllikes` (`id`, `id_wall`, `id_user`) VALUES
+(1, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -414,13 +436,13 @@ ALTER TABLE `areas`
 -- AUTO_INCREMENT de tabela `billets`
 --
 ALTER TABLE `billets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `docs`
 --
 ALTER TABLE `docs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `foundandlost`
@@ -480,7 +502,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `walllikes`
 --
 ALTER TABLE `walllikes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `walls`
