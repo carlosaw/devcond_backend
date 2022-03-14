@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wall extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public $timestamps = false;
+  public $timestamps = false;
 }

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FoundAndLost extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public $timestamps = false;
-    public $table = 'foundandlost';
+  public $timestamps = false;
+  public $table = 'foundandlost';
 }

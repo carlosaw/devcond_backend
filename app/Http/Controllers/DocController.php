@@ -9,18 +9,18 @@ use App\Models\Doc;
 
 class DocController extends Controller
 {
-    public function getAll() {
-        $array = ['error', ''];
+  public function getAll() {
+    $array = ['error', ''];
 
-        // Pegar todos os Docs
-        $docs = Doc::all();
+    // Pegar todos os Docs
+    $docs = Doc::all();
 
-        foreach($docs as $docKey => $docValue) {
-            $docs[$docKey]['fileurl'] = asset('storage/'.$docValue['fileurl']);
-        }
-
-        $array['list'] = $docs;
-
-        return $array;
+    foreach($docs as $docKey => $docValue) {
+      $docs[$docKey]['fileurl'] = asset('storage/'.$docValue['fileurl']);
     }
+
+    $array['list'] = $docs;
+
+    return $array;
+  }
 }

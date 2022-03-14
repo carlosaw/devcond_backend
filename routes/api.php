@@ -11,7 +11,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WallController;
-use useApp\Http\Controllers\WarningController;
+use App\Http\Controllers\WarningController;
 
 
 Route::get('/ping', function() {

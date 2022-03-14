@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AreaDisabledDay extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public $timestamps = false;
-    public $table = 'areadisableddays';
+  public $timestamps = false;
+  public $table = 'areadisableddays';
 }

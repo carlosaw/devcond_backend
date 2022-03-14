@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UnitVehicle extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $hidden = [
-        'id_unit'
-    ];
+  protected $hidden = [
+      'id_unit'
+  ];
 
-    public $timestamps = false;
-    public $table = 'unitvehicles';
+  public $timestamps = false;
+  public $table = 'unitvehicles';
 }

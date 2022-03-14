@@ -9,22 +9,22 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+  use HasFactory, Notifiable;
 
-    public $timestamps = false;
+  public $timestamps = false;
 
-    protected $hidden = [
-        'password'
-    ];
+  protected $hidden = [
+    'password'
+  ];
 
-    // Função adicionada p/ JWT
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    // Função adicionada p/ JWT
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
+  // Função adicionada p/ JWT
+  public function getJWTIdentifier()
+  {
+    return $this->getKey();
+  }
+  // Função adicionada p/ JWT
+  public function getJWTCustomClaims()
+  {
+    return [];
+  }
 }

@@ -11,124 +11,124 @@ use App\Models\Unit;
 
 class AuthController extends Controller
 {
-    public function unauthorized() {
-        return response()->json([
-            'error' => 'Não autorizado!'
-        ], 401);
+  public function unauthorized() {
+      return response()->json([
+          'error' => 'Não autorizado!'
+      ], 401);
+  }
+
+  public function register(Request $request) {
+    $array = ['error' => ''];
+
+    $validator = Validator::make($request->all(), [
+      'name' => 'required',
+      'email' => 'required|email|unique:users,email',
+      'cpf' => 'required|digits:11|unique:users,cpf',
+      'password' => 'required',
+      'password_confirm' => 'required|same:password'
+    ]);
+
+    if(!$validator->fails()) {
+      $name = $request->input('name');
+      $email = $request->input('email');
+      $cpf = $request->input('cpf');
+      $password = $request->input('password');
+
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+
+      $newUser = new User();
+      $newUser->name = $name;
+      $newUser->email = $email;
+      $newUser->cpf = $cpf;
+      $newUser->password = $hash;
+      $newUser->save();
+
+      $token = auth()->attempt([
+          'cpf' => $cpf,
+          'password' => $password
+      ]);
+      if(!$token) {
+          $array['error'] = 'Ocorreu um erro!';
+          return $array;
+      }
+      $array['token'] = $token;
+
+      $user = auth()->user();
+      $array['user'] = $user;
+
+      $properties = Unit::select(['id', 'name'])
+      ->where('id_owner', $user['id'])
+      ->get();
+
+      $array['user']['properties'] = $properties;
+
+    } else {
+      $array['error'] = $validator->errors()->first();
+      return $array;
     }
 
-    public function register(Request $request) {
-        $array = ['error' => ''];
+    return $array;
+  }
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'cpf' => 'required|digits:11|unique:users,cpf',
-            'password' => 'required',
-            'password_confirm' => 'required|same:password'
-        ]);
+  public function login(Request $request) {
+    $array = ['error' => ''];
 
-        if(!$validator->fails()) {
-            $name = $request->input('name');
-            $email = $request->input('email');
-            $cpf = $request->input('cpf');
-            $password = $request->input('password');
+    $validator = Validator::make($request->all(), [
+      'cpf' => 'required|digits:11',
+      'password' => 'required'
+    ]);
+      
+    if(!$validator->fails()) {
+      $cpf = $request->input('cpf');
+      $password = $request->input('password');
 
-            $hash = password_hash($password, PASSWORD_DEFAULT);
+      $token = auth()->attempt([
+          'cpf' => $cpf,
+          'password' => $password
+      ]);
+      if(!$token) {
+          $array['error'] = 'CPF e/ou senha incorretos!';
+          return $array;
+      }
+      $array['token'] = $token;
 
-            $newUser = new User();
-            $newUser->name = $name;
-            $newUser->email = $email;
-            $newUser->cpf = $cpf;
-            $newUser->password = $hash;
-            $newUser->save();
+      $user = auth()->user();
+      $array['user'] = $user;
 
-            $token = auth()->attempt([
-                'cpf' => $cpf,
-                'password' => $password
-            ]);
-            if(!$token) {
-                $array['error'] = 'Ocorreu um erro!';
-                return $array;
-            }
-            $array['token'] = $token;
+      $properties = Unit::select(['id', 'name'])
+      ->where('id_owner', $user['id'])
+      ->get();
 
-            $user = auth()->user();
-            $array['user'] = $user;
-
-            $properties = Unit::select(['id', 'name'])
-            ->where('id_owner', $user['id'])
-            ->get();
-
-            $array['user']['properties'] = $properties;
-
-        } else {
-            $array['error'] = $validator->errors()->first();
-            return $array;
-        }
-
-        return $array;
-    }
-
-    public function login(Request $request) {
-        $array = ['error' => ''];
-
-        $validator = Validator::make($request->all(), [
-            'cpf' => 'required|digits:11',
-            'password' => 'required'
-        ]);
+      $array['user']['properties'] = $properties;
         
-        if(!$validator->fails()) {
-            $cpf = $request->input('cpf');
-            $password = $request->input('password');
-
-            $token = auth()->attempt([
-                'cpf' => $cpf,
-                'password' => $password
-            ]);
-            if(!$token) {
-                $array['error'] = 'CPF e/ou senha incorretos!';
-                return $array;
-            }
-            $array['token'] = $token;
-
-            $user = auth()->user();
-            $array['user'] = $user;
-
-            $properties = Unit::select(['id', 'name'])
-            ->where('id_owner', $user['id'])
-            ->get();
-
-            $array['user']['properties'] = $properties;
-            
-        } else {
-            $array['error'] = $validator->errors()->first();
-            return $array;
-        }
-
-        return $array;
+    } else {
+      $array['error'] = $validator->errors()->first();
+      return $array;
     }
 
-    public function validateToken() {
-        $array = ['error' => ''];
+    return $array;
+  }
 
-        $user = auth()->user();
-        $array['user'] = $user;
+  public function validateToken() {
+    $array = ['error' => ''];
 
-        $properties = Unit::select(['id', 'name'])
-        ->where('id_owner', $user['id'])
-        ->get();
+    $user = auth()->user();
+    $array['user'] = $user;
 
-        $array['user']['properties'] = $properties;
+    $properties = Unit::select(['id', 'name'])
+    ->where('id_owner', $user['id'])
+    ->get();
 
-        return $array;
-    }
+    $array['user']['properties'] = $properties;
 
-    public function logout() {
-        $array = ['error' => ''];
+    return $array;
+  }
 
-        auth()->logout();
+  public function logout() {
+    $array = ['error' => ''];
 
-        return $array;
-    }
+    auth()->logout();
+
+    return $array;
+  }
 }
