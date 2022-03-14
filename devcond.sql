@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Mar-2022 às 14:17
+-- Tempo de geração: 14-Mar-2022 às 21:40
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -313,6 +313,13 @@ CREATE TABLE `warnings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Extraindo dados da tabela `warnings`
+--
+
+INSERT INTO `warnings` (`id`, `id_unit`, `title`, `status`, `datecreated`, `photos`) VALUES
+(1, 2, 'Vizinho é chato', 'IN_REVIEW', '2022-03-14', 'foto1jpg,foto2.jpg');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -514,7 +521,7 @@ ALTER TABLE `walls`
 -- AUTO_INCREMENT de tabela `warnings`
 --
 ALTER TABLE `warnings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
