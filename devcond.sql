@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14-Mar-2022 às 21:40
+-- Tempo de geração: 15-Mar-2022 às 02:34
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -317,7 +317,9 @@ CREATE TABLE `warnings` (
 --
 
 INSERT INTO `warnings` (`id`, `id_unit`, `title`, `status`, `datecreated`, `photos`) VALUES
-(1, 2, 'Vizinho é chato', 'IN_REVIEW', '2022-03-14', 'foto1jpg,foto2.jpg');
+(1, 2, 'Vizinho é chato', 'IN_REVIEW', '2022-03-14', 'foto1jpg,foto2.jpg'),
+(2, 2, 'Vizinho chato2 via api', 'IN_REVIEW', '2022-03-15', ''),
+(3, 2, 'Vizinho feio com foto', 'IN_REVIEW', '2022-03-15', 'mrID5GYRY60fTOPDBGgT8CHLeMDIvrLkM4It3hHS.jpg,mrID5GYRY60fTOPDBGgT8CHLeMDIvrLkM4It3hHS.jpg');
 
 --
 -- Índices para tabelas despejadas
@@ -521,7 +523,7 @@ ALTER TABLE `walls`
 -- AUTO_INCREMENT de tabela `warnings`
 --
 ALTER TABLE `warnings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
