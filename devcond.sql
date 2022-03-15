@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Mar-2022 às 02:34
+-- Tempo de geração: 15-Mar-2022 às 21:45
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -122,6 +122,15 @@ CREATE TABLE `foundandlost` (
   `datecreated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `foundandlost`
+--
+
+INSERT INTO `foundandlost` (`id`, `status`, `photo`, `description`, `where`, `datecreated`) VALUES
+(1, 'recovered', 'alguma.jpg', 'Carteria azul cheia de dinheiro', 'No pátio', '2022-03-15'),
+(2, 'RECOVERED', 'alguma2.jpg', 'Pente Verde', 'No Parquinho', '2022-03-15'),
+(3, 'LOST', 'ODBkNPILf71e1xPlQBd74U9gPFxSyDy06pUmQ8s0.jpg', 'Foto de alguém', 'Na churrasqueira', '2022-03-15');
+
 -- --------------------------------------------------------
 
 --
@@ -186,6 +195,14 @@ CREATE TABLE `unitpeoples` (
   `birthdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `unitpeoples`
+--
+
+INSERT INTO `unitpeoples` (`id`, `id_unit`, `name`, `birthdate`) VALUES
+(1, 2, 'Paulo', '2000-03-15'),
+(2, 2, 'Paula', '2000-03-15');
+
 -- --------------------------------------------------------
 
 --
@@ -198,6 +215,13 @@ CREATE TABLE `unitpets` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `race` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `unitpets`
+--
+
+INSERT INTO `unitpets` (`id`, `id_unit`, `name`, `race`) VALUES
+(1, 2, 'Jadhy', 'Mestiça');
 
 -- --------------------------------------------------------
 
@@ -234,6 +258,13 @@ CREATE TABLE `unitvehicles` (
   `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `plate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `unitvehicles`
+--
+
+INSERT INTO `unitvehicles` (`id`, `id_unit`, `title`, `color`, `plate`) VALUES
+(1, 2, 'Ferrari', 'Amarela', 'ZZZ-0908');
 
 -- --------------------------------------------------------
 
@@ -457,7 +488,7 @@ ALTER TABLE `docs`
 -- AUTO_INCREMENT de tabela `foundandlost`
 --
 ALTER TABLE `foundandlost`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `migrations`
@@ -481,13 +512,13 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT de tabela `unitpeoples`
 --
 ALTER TABLE `unitpeoples`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `unitpets`
 --
 ALTER TABLE `unitpets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `units`
@@ -499,7 +530,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT de tabela `unitvehicles`
 --
 ALTER TABLE `unitvehicles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `users`
