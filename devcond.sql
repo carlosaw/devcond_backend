@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Mar-2022 às 01:55
+-- Tempo de geração: 16-Mar-2022 às 21:55
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -33,6 +33,13 @@ CREATE TABLE `areadisableddays` (
   `day` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `areadisableddays`
+--
+
+INSERT INTO `areadisableddays` (`id`, `id_area`, `day`) VALUES
+(1, 2, '2022-03-16');
+
 -- --------------------------------------------------------
 
 --
@@ -56,16 +63,7 @@ CREATE TABLE `areas` (
 INSERT INTO `areas` (`id`, `allowed`, `title`, `cover`, `days`, `start_time`, `end_time`) VALUES
 (1, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
 (2, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
-(3, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00'),
-(4, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
-(5, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
-(6, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00'),
-(7, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
-(8, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
-(9, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00'),
-(10, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
-(11, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
-(12, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00');
+(3, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00');
 
 -- --------------------------------------------------------
 
@@ -182,6 +180,15 @@ CREATE TABLE `reservations` (
   `reservation_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `id_unit`, `id_area`, `reservation_date`) VALUES
+(1, 2, 2, '2022-03-16 14:36:27'),
+(2, 2, 2, '2022-03-19 18:00:00'),
+(3, 2, 2, '2022-03-19 22:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -221,8 +228,7 @@ CREATE TABLE `unitpets` (
 --
 
 INSERT INTO `unitpets` (`id`, `id_unit`, `name`, `race`) VALUES
-(1, 2, 'Jadhy', 'Mestiça'),
-(3, 1, 'Belinha', 'Viralatas');
+(1, 2, 'Jadhy', 'Mestiça');
 
 -- --------------------------------------------------------
 
@@ -465,7 +471,7 @@ ALTER TABLE `warnings`
 -- AUTO_INCREMENT de tabela `areadisableddays`
 --
 ALTER TABLE `areadisableddays`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `areas`
@@ -507,19 +513,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de tabela `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `unitpeoples`
 --
 ALTER TABLE `unitpeoples`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `unitpets`
 --
 ALTER TABLE `unitpets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `units`
@@ -531,7 +537,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT de tabela `unitvehicles`
 --
 ALTER TABLE `unitvehicles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `users`
