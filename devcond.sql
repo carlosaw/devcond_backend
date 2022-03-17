@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Mar-2022 às 21:55
+-- Tempo de geração: 17-Mar-2022 às 02:09
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -62,8 +62,8 @@ CREATE TABLE `areas` (
 
 INSERT INTO `areas` (`id`, `allowed`, `title`, `cover`, `days`, `start_time`, `end_time`) VALUES
 (1, 1, 'Academia', 'gyn.jpg', '1,2,4,5', '06:00:00', '22:00:00'),
-(2, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '06:00:00', '23:00:00'),
-(3, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '07:00:00', '22:00:00');
+(2, 1, 'Piscina', 'pool.jpg', '1,2,3,4,5', '07:00:00', '23:00:00'),
+(3, 1, 'Churrasqueira', 'barbecue.jpg', '4,5,6', '09:00:00', '23:00:00');
 
 -- --------------------------------------------------------
 
@@ -185,8 +185,7 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `id_unit`, `id_area`, `reservation_date`) VALUES
-(1, 2, 2, '2022-03-16 14:36:27'),
-(2, 2, 2, '2022-03-19 18:00:00'),
+(1, 2, 2, '2022-03-17 08:00:00'),
 (3, 2, 2, '2022-03-19 22:00:00');
 
 -- --------------------------------------------------------
