@@ -1,8 +1,10 @@
 <?php
-
+// UserController.php:
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\User;
 
 class UserController extends Controller
@@ -37,20 +39,43 @@ class UserController extends Controller
   public function update($id, Request $request) {
     $array = ['error' => ''];
 
-    $userName = $request->input('name');
-    //$userPass = $request->input('password');
+    $validator = Validator::make($request->all(), [
+      'name' => 'required',
+      'email' => 'required|email|unique:users,email',
+      'cpf' => 'required|digits:11',
+      'password' => 'required'
+    ]);
 
-    $newUserName = User::find($id);
+    if(!$validator->fails()) {
+      $name = $request->input('name');
+      $email = $request->input('email');
+      $cpf = $request->input('cpf');
+      $password = $request->input('password');
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+      if($name && $email && $cpf && $password) {
+        $dados = User::find($id);
+        if($dados) {
+          $dados->name = $name;
+          $dados->email = $email;
+          $dados->cpf = $cpf;
+          $dados->password = $hash;
+          $dados->save();
 
-    if(!empty($userName)) {
-      $newUserName->name = $userName;
-      $newUserName->save();
+          $array['user'] = [
+            'id' => $id,
+            'name' => $name,
+            'email' => $email,
+            'cpf' => $cpf,
+            'password' => $password
+          ];
+        }
+      } else {
+        $array['error'] = 'Usuário inexistente!';
+      }      
     } else {
-      $array['error'] = 'Usuário inexistente!';
+      $array['error'] = $validator->errors()->first();
       return $array;
     }
-
     return $array;
   }
-
 }

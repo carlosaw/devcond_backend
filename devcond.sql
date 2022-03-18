@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Mar-2022 às 21:55
+-- Tempo de geração: 18-Mar-2022 às 02:28
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.26
 
@@ -291,7 +291,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `cpf`, `password`) VALUES
-(1, 'Carlos Alberto', 'carlos@gmail.com', '12345678911', '$2y$10$fXxqHB2eDbTMqWakwk6KnOpHz0gip9ke0Y/4OWAfB4fAN8rv2xhk6'),
+(1, 'Carlos Alberto', 'carlos@hotmail.com', '12345612345', '$2y$10$8TiYRaaUl6T/PczjptZizuVY1dwmmKFvLKwD27m46zvvJjMMBTQpS'),
 (2, 'Cicrano', 'cicrano@gmail.com', '25648971236', '$2y$10$zwtGWrIOdfUfbvLFlna1sOCyvxnB1EE09e392C/KWAuVN9fvQ6Umi');
 
 -- --------------------------------------------------------
