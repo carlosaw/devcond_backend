@@ -102,7 +102,7 @@ class Createalltables extends Migration
             $table->time('start_time');
             $table->time('end_time');
         });
-        // Cria tabela ÁREAS INDISPONÍVEIS
+        // Cria tabela ÁREAS dias INDISPONÍVEIS
         Schema::create('areadisableddays', function(Blueprint $table) {
             $table->id();
             $table->integer('id_area');
