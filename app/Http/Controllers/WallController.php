@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Models\User;
 use App\Models\Wall;
 use App\Models\WallLike;
+use App\Models\User;
 
 class WallController extends Controller
 {
+  // Função para pegar avisos
   public function getAll() {
-    $array = ['error' => '', 'list' => []];
-    // Pega usuário logado
-    $user = auth()->user();
-
+    $array = ['error' => '', 'list' => []];    
+    $user = auth()->user();// Pega usuário logado
     // Pega todos os avisos do Mural
     $walls = Wall::all();
 
@@ -45,13 +42,13 @@ class WallController extends Controller
     $array = ['error' => ''];
     // Pega usuário logado
     $user = auth()->user();
-
+    // Pega postagem que usuário logado deu like
     $meLikes = WallLike::where('id_wall', $id)
     ->where('id_user', $user['id'])
     ->count();
-
+    // Verifica se deu like ou não.
     if($meLikes > 0) {
-      // Remover o like
+      // Remover o like do usuario naquele post
       WallLike::where('id_wall', $id)
       ->where('id_user', $user['id'])
       ->delete();
@@ -65,8 +62,7 @@ class WallController extends Controller
       $array['liked'] = true;
     }
     // Refazer a contagem
-    $array['likes'] = WallLike::where('id_wall', $id)
-    ->count();
+    $array['likes'] = WallLike::where('id_wall', $id)->count();
 
     return $array;
   }

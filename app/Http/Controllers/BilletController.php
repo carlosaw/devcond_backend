@@ -15,7 +15,7 @@ class BilletController extends Controller
 
     $property = $request->input('property');
     if($property) {
-      // Varifica se a unidade é do usuario logado
+      // Verifica se a unidade é do usuario logado
       $user = auth()->user();
       $unit = Unit::where('id', $property)
       ->where('id_owner', $user['id'])

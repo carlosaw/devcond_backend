@@ -27,7 +27,7 @@ class AuthController extends Controller
       'password' => 'required',
       'password_confirm' => 'required|same:password'
     ]);
-
+    // Se validação não falhou pega o que foi digitado
     if(!$validator->fails()) {
       $name = $request->input('name');
       $email = $request->input('email');
@@ -35,27 +35,28 @@ class AuthController extends Controller
       $password = $request->input('password');
 
       $hash = password_hash($password, PASSWORD_DEFAULT);
-
+      // Cria novo usuário
       $newUser = new User();
       $newUser->name = $name;
       $newUser->email = $email;
       $newUser->cpf = $cpf;
       $newUser->password = $hash;
       $newUser->save();
-
+      // Gera token do usuário
       $token = auth()->attempt([
-          'cpf' => $cpf,
-          'password' => $password
+        'cpf' => $cpf,
+        'password' => $password
       ]);
       if(!$token) {
-          $array['error'] = 'Ocorreu um erro!';
-          return $array;
+        $array['error'] = 'Ocorreu um erro!';
+        return $array;
       }
       $array['token'] = $token;
 
+      // Associa usuário à unidade
       $user = auth()->user();
       $array['user'] = $user;
-
+      // Pega as unidades associadas ao usuário
       $properties = Unit::select(['id', 'name'])
       ->where('id_owner', $user['id'])
       ->get();
@@ -72,23 +73,23 @@ class AuthController extends Controller
 
   public function login(Request $request) {
     $array = ['error' => ''];
-
+    // Valida usuário e senha
     $validator = Validator::make($request->all(), [
       'cpf' => 'required|digits:11',
       'password' => 'required'
     ]);
-      
+    // Se validação não falhou  
     if(!$validator->fails()) {
       $cpf = $request->input('cpf');
       $password = $request->input('password');
 
       $token = auth()->attempt([
-          'cpf' => $cpf,
-          'password' => $password
+        'cpf' => $cpf,
+        'password' => $password
       ]);
       if(!$token) {
-          $array['error'] = 'CPF e/ou senha incorretos!';
-          return $array;
+        $array['error'] = 'CPF e/ou senha incorretos!';
+        return $array;
       }
       $array['token'] = $token;
 
@@ -111,10 +112,10 @@ class AuthController extends Controller
 
   public function validateToken() {
     $array = ['error' => ''];
-
+    // Dados atualizados do usuário logado
     $user = auth()->user();
     $array['user'] = $user;
-
+    // Propriedades do usuário
     $properties = Unit::select(['id', 'name'])
     ->where('id_owner', $user['id'])
     ->get();
