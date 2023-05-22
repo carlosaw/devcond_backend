@@ -12,7 +12,7 @@ class BilletController extends Controller
 {
   public function getAll(Request $request) {
     $array = ['error', ''];
-
+    // Pega qual propriedade
     $property = $request->input('property');
     if($property) {
       // Verifica se a unidade é do usuario logado

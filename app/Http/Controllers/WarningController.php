@@ -19,13 +19,11 @@ class WarningController extends Controller
     if($property) {
       // Verifica se a unidade é do usuario logado
       $user = auth()->user();
-
       $unit = Unit::where('id', $property)
       ->where('id_owner', $user['id'])
       ->count();
 
       if($unit > 0) {
-
           $warnings = Warning::where('id_unit', $property)
           ->orderBy('datecreated', 'DESC')
           ->orderBy('id', 'DESC')
@@ -81,10 +79,11 @@ class WarningController extends Controller
       'property' => 'required'
     ]);
     if(!$validator->fails()) {
+      // Pega os dados
       $title = $request->input('title');
       $property = $request->input('property');
       $list = $request->input('list');
-
+      // Salva os dados
       $newWarn = new Warning();
       $newWarn->id_unit = $property;
       $newWarn->title = $title;
@@ -101,7 +100,6 @@ class WarningController extends Controller
       } else {
         $newWarn->photos = '';
       }
-
       $newWarn->save();
 
     } else {

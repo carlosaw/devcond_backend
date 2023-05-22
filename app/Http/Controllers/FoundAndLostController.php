@@ -11,22 +11,22 @@ class FoundAndLostController extends Controller
 {
   public function getAll() {
     $array = ['error' => ''];
-    // Pega os PERDIDOS
+    // Pega lista dos PERDIDOS
     $lost = FoundAndLost::where('status', 'LOST')
     ->orderBy('datecreated', 'DESC')
     ->orderBy('id', 'DESC')
     ->get();
-    // Pega os ACHADOS
+    // Pega lista dos ACHADOS
     $recovered = FoundAndLost::where('status', 'RECOVERED')
     ->orderBy('datecreated', 'DESC')
     ->orderBy('id', 'DESC')
     ->get();
-
+    // Corrige a data e cria url e cria LOST
     foreach($lost as $lostKey => $lostValue) {
       $lost[$lostKey]['datecreated'] = date('d/m/Y', strtotime($lostValue['datecreated']));
       $lost[$lostKey]['photo'] = asset('storage/'.$lostValue['photo']);
     }
-
+    // Corrige a data e cria url e cria RECOVERED
     foreach($recovered as $recKey => $recValue) {
       $recovered[$recKey]['datecreated'] = date('d/m/Y', strtotime($recValue['datecreated']));
       $recovered[$recKey]['photo'] = asset('storage/'.$recValue['photo']);
