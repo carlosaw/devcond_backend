@@ -14,13 +14,19 @@ class ReservationController extends Controller
 {
   public function getReservations() {
     $array = ['error' => '', 'list' => []];
-    $daysHelper = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+    $daysHelper = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
     // Pegar áreas permitidas para reservas
     $areas = Area::where('allowed', 1)->get();
     // Pegar o nome dos dias
+    /* Academia */
     // Seg-Ter 06:00 às 22:00
     // Qui-Sex 06:00 às 22:00
+    /* Piscina */
+    // Seg-Sex 07:00 às 23:00
+    /* Churrasqueira */
+    // Qui-Sab 09:00 às 23:00
+
     foreach($areas as $area) {
       $dayList = explode(',', $area['days']);
 
