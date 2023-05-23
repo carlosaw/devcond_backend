@@ -92,20 +92,20 @@ class ReservationController extends Controller
       'property' => 'required'
     ]);
     if(!$validator->fails()) {
-      $date = $request->input('date');
-      $time = $request->input('time');
-      $property = $request->input('property');
+      $date = $request->input('date');// Pega a data
+      $time = $request->input('time');// Pega horário
+      $property = $request->input('property');// Pega a propriedade
 
-      $unit = Unit::find($property);
-      $area = Area::find($id);
+      $unit = Unit::find($property);// Verifica propriedade
+      $area = Area::find($id);// Verifica a área
       
-      if($unit && $area) {
+      if($unit && $area) {// Se unidade e area existirem
         $can = true;
         $weekday = date('w', strtotime($date));
 
         // Verifica se está dentro da disponibilidade padrão.
         $allowedDays = explode(',', $area['days']);
-        if(in_array($weekday, $allowedDays)) {
+        if(!in_array($weekday, $allowedDays)) {
           $can = false;
         } else {
           $start = strtotime($area['start_time']);
@@ -151,7 +151,6 @@ class ReservationController extends Controller
       return $array;
     }
 
-
     return $array;
   }
 
@@ -187,7 +186,7 @@ class ReservationController extends Controller
         $current < $end;
         $current = strtotime('+1 day', $current)
       ) {
-        $wd = date('w', $current);
+        $wd = date('w', $current);// Pega dia da semana
         if(in_array($wd, $offDays)) {
           $array['list'][] = date('Y-m-d', $current);
         }
