@@ -208,7 +208,6 @@ class ReservationController extends Controller
       $date = $request->input('date');
       $area = Area::find($id);
       if($area) {
-
         $can = true;
         // Verificar se é dia disabled
         $existingDisabledDay = AreaDisabledDay::where('id_area', $id)
@@ -245,19 +244,20 @@ class ReservationController extends Controller
             ];
           }
 
-          // Removendo as reservas
+          // Pega a lista de reservas
           $reservations = Reservation::where('id_area', $id)
           ->whereBetween('reservation_date', [
             $date.' 00:00:00',
             $date.' 23:59:59'
           ])
           ->get();
+          // Gera a lista de reservas para remover
           $toRemove = [];
           foreach($reservations as $reservation) {
             $time = date('H:i:s', strtotime($reservation['reservation_date']));
             $toRemove[] = $time;
           }
-
+          // Remove da lista a reserva
           foreach($timeList as $timeItem) {
             if(!in_array($timeItem['id'], $toRemove)) {
               $array['list'][] = $timeItem;
