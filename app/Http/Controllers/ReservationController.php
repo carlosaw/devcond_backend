@@ -278,7 +278,7 @@ class ReservationController extends Controller
 
   public function getMyReservations(Request $request) {
     $array = ['error' => '', 'list' => []];
-    // Pega as propriedades
+    // Pega a propriedade
     $property = $request->input('property');
     if($property) {
       // Pega as reservas daquela unidade
@@ -294,7 +294,7 @@ class ReservationController extends Controller
           $daterev = date('d/m/Y H:i', strtotime($reservation['reservation_date']));
           $aftertime = date('H:i', strtotime('+1 hour', strtotime($reservation['reservation_date'])));
 
-          $daterev .= ' a '.$aftertime;
+          $daterev .= ' à '.$aftertime;
 
           $array['list'][] = [
             'id' => $reservation['id'],

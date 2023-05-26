@@ -41,7 +41,7 @@ class UserController extends Controller
 
     $validator = Validator::make($request->all(), [
       'name' => 'required',
-      'email' => 'required|email|unique:users,email',
+      'email' => 'required|email',
       'cpf' => 'required|digits:11',
       'password' => 'required'
     ]);
@@ -52,7 +52,7 @@ class UserController extends Controller
       $cpf = $request->input('cpf');
       $password = $request->input('password');
       $hash = password_hash($password, PASSWORD_DEFAULT);
-      if($name && $email && $cpf && $password) {
+      if($name || $email || $cpf || $password) {
         $dados = User::find($id);
         if($dados) {
           $dados->name = $name;
@@ -66,7 +66,7 @@ class UserController extends Controller
             'name' => $name,
             'email' => $email,
             'cpf' => $cpf,
-            'password' => $password
+            'password' => $password//$hash
           ];
         }
       } else {
