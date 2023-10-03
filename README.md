@@ -6,6 +6,7 @@
 
 # Gerar chave secreta-jwt
 ## php artisan jwt:secret
+
 # run project
 ## php artisan serve
 
